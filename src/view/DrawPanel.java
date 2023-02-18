@@ -17,7 +17,7 @@ public class DrawPanel extends JPanel {
         points.put(name, new Point());
         // Print an error message in case file is not found with a try/catch block
         try {
-            BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream("pics/" + name + ".jpg"));
+            BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/" + name + ".jpg"));
             pics.put(name, image);
         } catch (IOException ex) {
             ex.printStackTrace();
