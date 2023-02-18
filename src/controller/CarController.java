@@ -1,11 +1,11 @@
-package Controller;
+package controller;
 
-import View.CarView;
-import Model.Motorized;
-import Model.Vehicle;
-import Model.Saab95;
-import Model.Scania;
-import Model.Volvo240;
+import view.CarView;
+import model.Motorized;
+import model.Vehicle;
+import model.gameobjects.Saab95;
+import model.gameobjects.Scania;
+import model.gameobjects.Volvo240;
 
 import javax.swing.*;
 import java.awt.*;

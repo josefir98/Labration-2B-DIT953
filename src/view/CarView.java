@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import Controller.CarController;
+import controller.CarController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

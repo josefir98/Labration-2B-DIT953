@@ -1,4 +1,6 @@
-package Model;
+package model;
+
+import model.interfaces.Movable;
 
 import java.awt.*;
 

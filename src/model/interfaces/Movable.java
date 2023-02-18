@@ -1,4 +1,4 @@
-package Model;
+package model.interfaces;
 
 /**
  * Interface for everything that moves

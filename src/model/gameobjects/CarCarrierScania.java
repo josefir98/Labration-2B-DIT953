@@ -1,4 +1,9 @@
-package Model;
+package model.gameobjects;
+
+import model.Car;
+import model.interfaces.PlatForm;
+import model.Storage;
+import model.Truck;
 
 import java.awt.*;
 

@@ -1,7 +1,4 @@
-package Model;
-
-import Model.Car;
-import Model.Truck;
+package model;
 
 import java.util.Stack;
 

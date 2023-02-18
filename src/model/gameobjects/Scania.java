@@ -1,7 +1,7 @@
-package Model;
+package model.gameobjects;
 
-import Model.Truck;
-import Model.PlatForm;
+import model.Truck;
+import model.interfaces.PlatForm;
 
 import java.awt.*;
 

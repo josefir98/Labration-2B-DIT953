@@ -1,4 +1,4 @@
-package Model;
+package model.interfaces;
 
 /**
  * Interface for things that have a platform

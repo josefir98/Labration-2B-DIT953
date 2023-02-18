@@ -1,6 +1,6 @@
-package Model;
+package model.gameobjects;
 
-import Model.Car;
+import model.Car;
 
 import java.util.ArrayList;
 
