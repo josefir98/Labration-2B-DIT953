@@ -1,4 +1,4 @@
-package Misc;
+package View;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +13,7 @@ public class DrawPanel extends JPanel {
     private HashMap<String,Point> points = new HashMap<>();
     private HashMap<String,BufferedImage> pics = new HashMap<>();
 
-    void init(String name) {
+    public void init(String name) {
         points.put(name, new Point());
         // Print an error message in case file is not found with a try/catch block
         try {
@@ -24,7 +24,7 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    void moveit(String name, int x, int y) {
+    public void moveit(String name, int x, int y) {
         points.get(name).x = x;
         points.get(name).y = y;
     }

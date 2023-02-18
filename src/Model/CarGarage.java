@@ -1,9 +1,8 @@
-package Objects;
+package Model;
 
-import Abstract.Car;
+import Model.Car;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CarGarage<T extends Car> {
     private int maxCars;

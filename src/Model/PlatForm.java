@@ -1,4 +1,4 @@
-package Abstract;
+package Model;
 
 /**
  * Interface for things that have a platform

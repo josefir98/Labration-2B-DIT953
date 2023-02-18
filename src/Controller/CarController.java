@@ -1,11 +1,11 @@
-package Misc;
+package Controller;
 
-import Abstract.Car;
-import Abstract.Motorized;
-import Abstract.Vehicle;
-import Objects.Saab95;
-import Objects.Scania;
-import Objects.Volvo240;
+import View.CarView;
+import Model.Motorized;
+import Model.Vehicle;
+import Model.Saab95;
+import Model.Scania;
+import Model.Volvo240;
 
 import javax.swing.*;
 import java.awt.*;
@@ -84,7 +84,7 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         double gas = ((double) amount) / 100;
         for (Vehicle car : cars) {
             car.gas(gas);
@@ -92,14 +92,14 @@ public class CarController {
     }
 
     // Calls the brake method for each car once
-    void brake(int amount) {
+    public void brake(int amount) {
         double brake = ((double) amount) / 100;
         for (Vehicle car : cars) {
             car.brake(brake);
         }
     }
 
-    void turboOn() {
+    public void turboOn() {
         for (Vehicle car : cars) {
             if (car.getModelName() == "Saab95") {
                 Saab95 saab = (Saab95) car;
@@ -107,7 +107,7 @@ public class CarController {
             }
         }
     }
-    void turboOff() {
+    public void turboOff() {
         for (Vehicle car : cars) {
             if (car.getModelName() == "Saab95") {
                 Saab95 saab = (Saab95) car;
@@ -116,7 +116,7 @@ public class CarController {
         }
     }
 
-    void liftBed() {
+    public void liftBed() {
         for (Vehicle car : cars) {
             if (car.getModelName() == "Scania") {
                 Scania scania = (Scania) car;
@@ -125,7 +125,7 @@ public class CarController {
         }
     }
 
-    void lowerBed() {
+    public void lowerBed() {
         for (Vehicle car : cars) {
             if (car.getModelName() == "Scania") {
                 Scania scania = (Scania) car;
@@ -134,14 +134,14 @@ public class CarController {
         }
     }
 
-    void startEngine() {
+    public void startEngine() {
         for (Vehicle car : cars) {
             Motorized cur = (Motorized) car;
             cur.startEngine();
         }
     }
 
-    void stopEngine() {
+    public void stopEngine() {
         for (Vehicle car : cars) {
             Motorized cur = (Motorized) car;
             cur.stopEngine();

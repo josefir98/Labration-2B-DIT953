@@ -1,7 +1,7 @@
-package Objects;
+package Model;
 
-import Abstract.Truck;
-import Abstract.PlatForm;
+import Model.Truck;
+import Model.PlatForm;
 
 import java.awt.*;
 

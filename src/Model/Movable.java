@@ -1,4 +1,4 @@
-package Abstract;
+package Model;
 
 /**
  * Interface for everything that moves

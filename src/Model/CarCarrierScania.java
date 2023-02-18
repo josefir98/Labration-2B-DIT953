@@ -1,8 +1,4 @@
-package Objects;
-
-import Abstract.Car;
-import Abstract.Truck;
-import Abstract.PlatForm;
+package Model;
 
 import java.awt.*;
 

@@ -1,4 +1,4 @@
-package Abstract;
+package Model;
 
 import java.awt.*;
 

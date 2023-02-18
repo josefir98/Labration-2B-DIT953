@@ -1,7 +1,7 @@
-package Objects;
+package Model;
 
-import Abstract.Car;
-import Abstract.Truck;
+import Model.Car;
+import Model.Truck;
 
 import java.util.Stack;
 
