@@ -1,0 +1,44 @@
+Finns det ett sätt att inte behöva ha alla metod bodies som inte ska ändras
+när man har ett object och interface av en abstraction?
+
+Refaktoriseringsplan:
+
+DONE:
+
+Gör om mappar till Model, View, Controller
+
+Steg för att bättre följa high cohesion, low coupling, DIP och composition over inheritance.
+1. Gör ett interface IVehicle och IMotorized
+2. IVehicle ska extenda Moveble
+3. Refaktorisera det som är i Car och Truck till Vehicle och ta bort dom.
+4. Vehicle, Motorized och alla fordon ska implementa IVehicle och IMotorized.
+5. Alla fordon ska ha en (has a) Vehicle och Motorized refernes.
+
+
+TODO:
+
+Steg för att bättre följa SoC, SRP, high cohesion och low coupling
+
+1. Gör en Wrapper class för att skicka namn och position från CarController till DrawPanel. Typ såhär:
+
+	Wrapper {
+		String name;
+		int x;
+		int y;
+		Wrapper(name, x, y) {
+			….
+		}
+	}
+2. Ha en map av alla bilder redo i DrawPanel så att bilder inte behöver bindas till en enskild bil.
+3. Gör en ArrayList <Wrapper> curState i drawPanel som används för att repainta.
+    Denna lista skapas och kommer uppdateras av CarController varje steg i TimerListener.
+4. TimerListener gör repaints varje iteration i loopen, onödigt, gör det efter alla bilar har uppdaterats.
+
+Förbättra platform med composition over inheritence
+Gör classes för platform, en till Scania och en för CarCarrierScania, allt ska implementa IPlatform
+
+Gör en separat modul Application för att starta programmet
+Alla applikationerhar en ”main”-metod som går att exekvera. Denna hör inte till någon av MVC, utan ligger separat (”A”)
+
+CarController ska inte göra bilar och ha dom i sig. Gör en model class "World" där sånt hanteras.
+

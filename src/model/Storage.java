@@ -1,8 +1,10 @@
 package model;
 
+import model.interfaces.IMotorized;
+
 import java.util.Stack;
 
-public class Storage<T extends Car, L extends Truck> {
+public class Storage<T extends IMotorized, L extends IMotorized> {
     private Stack<T> storage = new Stack<T>();
 
     /**

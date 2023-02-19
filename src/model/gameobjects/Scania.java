@@ -1,22 +1,27 @@
 package model.gameobjects;
 
-import model.Truck;
-import model.interfaces.PlatForm;
+import model.Motorized;
+import model.interfaces.IMotorized;
+import model.interfaces.IPlatForm;
+import model.interfaces.IVehicle;
 
 import java.awt.*;
 
-public class Scania extends Truck implements PlatForm {
+public class Scania implements IMotorized, IPlatForm {
 
     private final static double trimFactor = 1;
 
     private int platformStage;
 
+    private Motorized motorized;
+
     /**
      * Superclass for Scania
+     *
      * @param color is the color of scania
      */
     public Scania(Color color) {
-        super("Scania", 2, color, 90);
+        motorized = new Motorized("Scania", color, 2, IVehicle.Size.MEDIUM, 90);
         platformStage = 0;
     }
 
@@ -34,6 +39,7 @@ public class Scania extends Truck implements PlatForm {
 
     /**
      * Getter for platform stage (how open the door is)
+     *
      * @return
      */
     @Override
@@ -44,6 +50,7 @@ public class Scania extends Truck implements PlatForm {
     /**
      * Setter for platformstage
      * Checks if platformstage is between 0 and 70 degrees
+     *
      * @param degree
      */
     @Override
@@ -62,14 +69,120 @@ public class Scania extends Truck implements PlatForm {
     /**
      * Checks if door is open
      * Unable to gas if door is open (!= 0)
+     *
      * @param amount
      */
     @Override
     public void gas(double amount) {
         if (getPlatStage() != 0) {
             throw new RuntimeException("This vehicle cannot move if its platform is at more than 0 degrees!");
-        }else {
-            super.gas(amount);
+        } else {
+            motorized.gas(amount);
         }
+    }
+
+    @Override
+    public double getEnginePower() {
+        return motorized.getEnginePower();
+    }
+
+    @Override
+    public void startEngine() {
+        motorized.startEngine();
+    }
+
+    @Override
+    public void stopEngine() {
+        motorized.stopEngine();
+    }
+
+    @Override
+    public int getNrDoors() {
+        return motorized.getNrDoors();
+    }
+
+    @Override
+    public void incrementSpeed(double amount) {
+        motorized.incrementSpeed(amount);
+    }
+
+    @Override
+    public void decrementSpeed(double amount) {
+        motorized.decrementSpeed(amount);
+    }
+
+    @Override
+    public void move() {
+        motorized.move();
+    }
+
+    @Override
+    public void turnLeft() {
+        motorized.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        motorized.turnRight();
+    }
+
+    @Override
+    public String getModelName() {
+        return motorized.getModelName();
+    }
+
+    @Override
+    public double getCurrentSpeed() {
+        return motorized.getCurrentSpeed();
+    }
+
+    @Override
+    public void setCurrentSpeed(double currentSpeed) {
+        motorized.setCurrentSpeed(currentSpeed);
+    }
+
+    @Override
+    public Color getColor() {
+        return motorized.getColor();
+    }
+
+    @Override
+    public void setColor(Color clr) {
+        motorized.setColor(clr);
+    }
+
+    @Override
+    public double getX() {
+        return motorized.getX();
+    }
+
+    @Override
+    public void setX(double x) {
+        motorized.setX(x);
+    }
+
+    @Override
+    public double getY() {
+        return motorized.getY();
+    }
+
+    @Override
+    public void setY(double y) {
+        motorized.setY(y);
+    }
+
+    @Override
+    public IVehicle.Dir getCurDir() {
+        return motorized.getCurDir();
+    }
+
+    @Override
+    public void setCurDir(IVehicle.Dir curDir) {
+        motorized.setCurDir(curDir);
+    }
+
+    @Override
+    public void brake(double amount) {
+        motorized.brake(amount);
     }
 }

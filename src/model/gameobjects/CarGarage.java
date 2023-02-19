@@ -1,10 +1,10 @@
 package model.gameobjects;
 
-import model.Car;
+import model.interfaces.IMotorized;
 
 import java.util.ArrayList;
 
-public class CarGarage<T extends Car> {
+public class CarGarage<T extends IMotorized> {
     private int maxCars;
     private ArrayList<T> cars = new ArrayList<T>();
 

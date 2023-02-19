@@ -1,12 +1,16 @@
 package model.gameobjects;
 
-import model.Car;
+import model.Motorized;
+import model.interfaces.IMotorized;
+import model.interfaces.IVehicle;
 
 import java.awt.*;
 
-public class Saab95 extends Car {
+public class Saab95 implements IMotorized {
 
     private boolean turboOn;
+
+    private Motorized motorized;
 
     /**
      * constructor for Models.Saab95 using the superclass in the car.java file. Color can be specified here
@@ -14,7 +18,7 @@ public class Saab95 extends Car {
      * @param color
      */
     public Saab95(Color color) {
-        super("Saab95", Size.MEDIUM, 2, color, 125);
+        motorized = new Motorized("Saab95", color, 2, Size.MEDIUM, 125);
         turboOn = false;
     }
 
@@ -43,5 +47,115 @@ public class Saab95 extends Car {
         double turbo = 1;
         if (turboOn) turbo = 1.3;
         return getEnginePower() * 0.01 * turbo;
+    }
+
+    @Override
+    public double getEnginePower() {
+        return motorized.getEnginePower();
+    }
+
+    @Override
+    public void startEngine() {
+        motorized.startEngine();
+    }
+
+    @Override
+    public void stopEngine() {
+        motorized.stopEngine();
+    }
+
+    @Override
+    public int getNrDoors() {
+        return motorized.getNrDoors();
+    }
+
+    @Override
+    public void incrementSpeed(double amount) {
+        motorized.incrementSpeed(amount);
+    }
+
+    @Override
+    public void decrementSpeed(double amount) {
+        motorized.decrementSpeed(amount);
+    }
+
+    @Override
+    public void move() {
+        motorized.move();
+    }
+
+    @Override
+    public void turnLeft() {
+        motorized.turnLeft();
+    }
+
+    @Override
+    public void turnRight() {
+        motorized.turnRight();
+    }
+
+    @Override
+    public String getModelName() {
+        return motorized.getModelName();
+    }
+
+    @Override
+    public double getCurrentSpeed() {
+        return motorized.getCurrentSpeed();
+    }
+
+    @Override
+    public void setCurrentSpeed(double currentSpeed) {
+        motorized.setCurrentSpeed(currentSpeed);
+    }
+
+    @Override
+    public Color getColor() {
+        return motorized.getColor();
+    }
+
+    @Override
+    public void setColor(Color clr) {
+        motorized.setColor(clr);
+    }
+
+    @Override
+    public double getX() {
+        return motorized.getX();
+    }
+
+    @Override
+    public void setX(double x) {
+        motorized.setX(x);
+    }
+
+    @Override
+    public double getY() {
+        return motorized.getY();
+    }
+
+    @Override
+    public void setY(double y) {
+        motorized.setY(y);
+    }
+
+    @Override
+    public IVehicle.Dir getCurDir() {
+        return motorized.getCurDir();
+    }
+
+    @Override
+    public void setCurDir(IVehicle.Dir curDir) {
+        motorized.setCurDir(curDir);
+    }
+
+    @Override
+    public void gas(double amount) {
+        motorized.gas(amount);
+    }
+
+    @Override
+    public void brake(double amount) {
+        motorized.brake(amount);
     }
 }
