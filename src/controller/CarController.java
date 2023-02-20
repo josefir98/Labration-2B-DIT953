@@ -37,9 +37,9 @@ public class CarController {
 
     //methods:
 
-    public static void main(String[] args) {
+    public CarController() {
         // Instance of this class
-        CarController cc = new CarController();
+        CarController cc = this;
 
         cc.cars.add(new Volvo240(Color.WHITE));
         cc.cars.add(new Saab95(Color.BLACK));
