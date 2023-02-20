@@ -11,14 +11,19 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel {
     private HashMap<String,Point> points = new HashMap<>();
-    private HashMap<String,BufferedImage> pics = new HashMap<>();
+    private HashMap<String,BufferedImage> pics;
 
     public void init(String name) {
         points.put(name, new Point());
+    }
+
+    private void getImages() {
+        pics = new HashMap<>();
         // Print an error message in case file is not found with a try/catch block
         try {
-            BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/" + name + ".jpg"));
-            pics.put(name, image);
+            pics.put("Volvo240", ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/Volvo240.jpg")));
+            pics.put("Saab95", ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/Saab95.jpg")));
+            pics.put("Scania", ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/Scania.jpg")));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -34,6 +39,7 @@ public class DrawPanel extends JPanel {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
+        getImages();
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself

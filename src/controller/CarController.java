@@ -1,5 +1,7 @@
 package controller;
 
+import model.World;
+import model.Wrapper;
 import model.interfaces.IMotorized;
 import model.interfaces.IVehicle;
 import view.CarView;
@@ -33,28 +35,25 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<IMotorized> cars = new ArrayList<>();
+    ArrayList<Wrapper> wCars;
+
+    World world;
 
     //methods:
 
-    public CarController() {
-        // Instance of this class
-        CarController cc = this;
-
-        cc.cars.add(new Volvo240(Color.WHITE));
-        cc.cars.add(new Saab95(Color.BLACK));
-        cc.cars.add(new Scania(Color.RED));
+    public CarController(World world) {
+        this.world = world;
+        this.wCars = this.world.getCars();
 
         // Start a new view and send a reference of self
-        cc.frame = new CarView("CarSim 1.0", cc);
+        frame = new CarView("CarSim 1.0", this);
 
-        for (int i = 0; i < cc.cars.size(); i++) {
-            cc.cars.get(i).setY(i * 100);
-            cc.frame.drawPanel.init(cc.cars.get(i).getModelName());
+        for (int i = 0; i < wCars.size(); i++) {
+            frame.drawPanel.init(wCars.get(i).getModelName());
         }
 
         // Start the timer
-        cc.timer.start();
+        timer.start();
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -62,89 +61,47 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (IMotorized car : cars) {
-                wallCol(car);
-                car.move();
-                String name = car.getModelName();
-                int x = (int) Math.round(car.getX());
-                int y = (int) Math.round(car.getY());
-                frame.drawPanel.moveit(name, x, y);
-                // repaint() calls the paintComponent method of the panel
-                frame.drawPanel.repaint();
-            }
-        }
-    }
-
-    // If edge collision is detected, reverses direction.
-    private void wallCol(IMotorized car) {
-        int x = (int) Math.round(car.getX());
-        int y = (int) Math.round(car.getY());
-        if (x < 0 || x > 800 || y < 0 || y > 560) {
-            car.turnLeft();
-            car.turnLeft();
+            world.wallCol();
+            world.move();
+            String name = car.getModelName();
+            int x = (int) Math.round(car.getX());
+            int y = (int) Math.round(car.getY());
+            frame.drawPanel.moveit(name, x, y);
+            // repaint() calls the paintComponent method of the panel
+            frame.drawPanel.repaint();
         }
     }
 
     // Calls the gas method for each car once
     public void gas(int amount) {
-        double gas = ((double) amount) / 100;
-        for (IMotorized car : cars) {
-            car.gas(gas, car.speedFactor());
-        }
+        world.gas(amount);
     }
 
     // Calls the brake method for each car once
     public void brake(int amount) {
-        double brake = ((double) amount) / 100;
-        for (IMotorized car : cars) {
-            car.brake(brake, car.speedFactor());
-        }
+        world.brake(amount);
     }
 
     public void turboOn() {
-        for (IMotorized car : cars) {
-            if (car.getModelName() == "Saab95") {
-                Saab95 saab = (Saab95) car;
-                saab.setTurboOn();
-            }
-        }
+        world.turboOn();
     }
     public void turboOff() {
-        for (IMotorized car : cars) {
-            if (car.getModelName() == "Saab95") {
-                Saab95 saab = (Saab95) car;
-                saab.setTurboOff();
-            }
-        }
+        world.turboOff();
     }
 
     public void liftBed() {
-        for (IMotorized car : cars) {
-            if (car.getModelName() == "Scania") {
-                Scania scania = (Scania) car;
-                scania.setPlatStage(70);
-            }
-        }
+        world.liftBed();
     }
 
     public void lowerBed() {
-        for (IMotorized car : cars) {
-            if (car.getModelName() == "Scania") {
-                Scania scania = (Scania) car;
-                scania.setPlatStage(0);
-            }
-        }
+        world.lowerBed();
     }
 
     public void startEngine() {
-        for (IMotorized car : cars) {
-            car.startEngine();
-        }
+        world.startEngine();
     }
 
     public void stopEngine() {
-        for (IMotorized car : cars) {
-            car.stopEngine();
-        }
+        world.stopEngine();
     }
 }
