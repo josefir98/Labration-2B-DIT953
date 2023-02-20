@@ -2,17 +2,9 @@ package controller;
 
 import model.World;
 import model.Wrapper;
-import model.interfaces.IMotorized;
-import model.interfaces.IVehicle;
 import view.CarView;
-import model.Motorized;
-import model.Vehicle;
-import model.gameobjects.Saab95;
-import model.gameobjects.Scania;
-import model.gameobjects.Volvo240;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -47,11 +39,8 @@ public class CarController {
 
         // Start a new view and send a reference of self
         frame = new CarView("CarSim 1.0", this);
-
-        for (int i = 0; i < wCars.size(); i++) {
-            frame.drawPanel.init(wCars.get(i).getModelName());
-        }
-
+        wCars = world.getCars();
+        frame.drawPanel.updateWrappers(wCars);
         // Start the timer
         timer.start();
     }
@@ -63,10 +52,9 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             world.wallCol();
             world.move();
-            String name = car.getModelName();
-            int x = (int) Math.round(car.getX());
-            int y = (int) Math.round(car.getY());
-            frame.drawPanel.moveit(name, x, y);
+            world.updateWrappers();
+            wCars = world.getCars();
+            frame.drawPanel.updateWrappers(wCars);
             // repaint() calls the paintComponent method of the panel
             frame.drawPanel.repaint();
         }

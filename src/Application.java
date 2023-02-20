@@ -18,6 +18,6 @@ public class Application {
 
         World world = new World(cars);
 
-        CarController cc = new CarController(world);
+        new CarController(world);
     }
 }

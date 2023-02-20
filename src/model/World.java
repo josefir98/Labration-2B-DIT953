@@ -11,13 +11,20 @@ public class World {
     ArrayList<Wrapper> wCars;
 
     public World(ArrayList<IMotorized> cars) {
+        this.cars = cars;
         wCars = new ArrayList<>();
-
         for (int i = 0; i < cars.size(); i++) {
             cars.get(i).setY(i * 100);
-            String name = cars.get(i).getModelName();
-            double x = cars.get(i).getX();
-            double y = cars.get(i).getY();
+        }
+        updateWrappers();
+    }
+
+    public void updateWrappers() {
+        wCars.clear();
+        for (IMotorized car : cars) {
+            String name = car.getModelName();
+            double x = car.getX();
+            double y = car.getY();
             wCars.add(new Wrapper(name, x, y));
         }
     }
@@ -62,7 +69,7 @@ public class World {
 
     public void turboOn() {
         for (IMotorized car : cars) {
-            if (car.getModelName() == "Saab95") {
+            if (car.getModelName().equals("Saab95")) {
                 Saab95 saab = (Saab95) car;
                 saab.setTurboOn();
             }
@@ -70,7 +77,7 @@ public class World {
     }
     public void turboOff() {
         for (IMotorized car : cars) {
-            if (car.getModelName() == "Saab95") {
+            if (car.getModelName().equals("Saab95")) {
                 Saab95 saab = (Saab95) car;
                 saab.setTurboOff();
             }
@@ -79,7 +86,7 @@ public class World {
 
     public void liftBed() {
         for (IMotorized car : cars) {
-            if (car.getModelName() == "Scania") {
+            if (car.getModelName().equals("Scania")) {
                 Scania scania = (Scania) car;
                 scania.setPlatStage(70);
             }
@@ -88,7 +95,7 @@ public class World {
 
     public void lowerBed() {
         for (IMotorized car : cars) {
-            if (car.getModelName() == "Scania") {
+            if (car.getModelName().equals("Scania")) {
                 Scania scania = (Scania) car;
                 scania.setPlatStage(0);
             }

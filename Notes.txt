@@ -1,5 +1,7 @@
 Hur kan knapparna vara i controller istället för view?
 
+Just nu när wCars uppdateras så clearas den och allt läggs till igen, bästa sättet?
+
 Refaktoriseringsplan:
 
 DONE:
@@ -17,10 +19,7 @@ Gör en separat modul Application för att starta programmet
 Alla applikationerhar en ”main”-metod som går att exekvera.
 Denna hör inte till någon av MVC, utan ligger separat (”A”)
 
-
-TODO:
-
-Steg för att bättre följa SoC, SRP, high cohesion och low coupling
+CarController ska inte göra bilar och ha dom i sig. Gör en model class "World" där sånt hanteras.
 
 1. Gör en Wrapper class för att skicka namn och position från CarController till DrawPanel. Typ såhär:
 
@@ -37,10 +36,12 @@ Steg för att bättre följa SoC, SRP, high cohesion och low coupling
     Denna lista skapas och kommer uppdateras av CarController varje steg i TimerListener.
 4. TimerListener gör repaints varje iteration i loopen, onödigt, gör det efter alla bilar har uppdaterats.
 
+TODO:
+
+Steg för att bättre följa SoC, SRP, high cohesion och low coupling
+
 Förbättra platform med composition over inheritence
 Gör classes för platform, en till Scania och en för CarCarrierScania, allt ska implementa IPlatform
-
-CarController ska inte göra bilar och ha dom i sig. Gör en model class "World" där sånt hanteras.
 
 OPTIONAL
 
