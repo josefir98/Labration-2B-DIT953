@@ -46,16 +46,16 @@ public class Vehicle implements IVehicle {
     }
 
     @Override
-    public void incrementSpeed(double amount) {
-        double speed = getCurrentSpeed() - speedFactor() * amount;
-        if (speed < getCurrentSpeed()) {
+    public void incrementSpeed(double amount, double speedFactor) {
+        double speed = getCurrentSpeed() + speedFactor * amount;
+        if (speed > getCurrentSpeed()) {
             setCurrentSpeed(speed);
         }
     }
 
     @Override
-    public void decrementSpeed(double amount) {
-        double speed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
+    public void decrementSpeed(double amount, double speedFactor) {
+        double speed = Math.max(getCurrentSpeed() - speedFactor * amount, 0);
         if (speed < getCurrentSpeed()) {
             setCurrentSpeed(speed);
         }
@@ -177,9 +177,9 @@ public class Vehicle implements IVehicle {
      * @param amount
      */
     @Override
-    public void gas(double amount) {
+    public void gas(double amount, double speedFactor) {
         if (amount <= 1 && amount >= 0) {
-            incrementSpeed(amount);
+            incrementSpeed(amount, speedFactor);
         } else {
             throw new IllegalArgumentException("Parameter must be in intervall[0,1]");
         }
@@ -191,9 +191,9 @@ public class Vehicle implements IVehicle {
      * @param amount
      */
     @Override
-    public void brake(double amount) {
+    public void brake(double amount, double speedFactor) {
         if (amount <= 1 && amount >= 0) {
-            decrementSpeed(amount);
+            decrementSpeed(amount, speedFactor);
         } else {
             throw new IllegalArgumentException("Parameter must be in intervall[0,1]");
         }

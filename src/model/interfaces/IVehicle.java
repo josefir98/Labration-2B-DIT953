@@ -23,9 +23,9 @@ public interface IVehicle extends IMovable {
 
     double speedFactor();
 
-    void incrementSpeed(double amount);
+    void incrementSpeed(double amount, double speedFactor);
 
-    void decrementSpeed(double amount);
+    void decrementSpeed(double amount, double speedFactor);
 
     String getModelName();
 
@@ -49,7 +49,7 @@ public interface IVehicle extends IMovable {
 
     void setCurDir(Dir curDir);
 
-    void gas(double amount);
+    void gas(double amount, double speedFactor);
 
-    void brake(double amount);
+    void brake(double amount, double speedFactor);
 }

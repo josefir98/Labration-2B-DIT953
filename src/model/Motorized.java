@@ -63,12 +63,10 @@ public class Motorized implements IMotorized {
      * @param amount
      */
     @Override
-    public void incrementSpeed(double amount) {
-        if (engineState) {
-            double speed = Math.min(getCurrentSpeed() + speedFactor() * amount, getEnginePower());
-            if (speed > getCurrentSpeed()) {
-                setCurrentSpeed(speed);
-            }
+    public void incrementSpeed(double amount, double speedFactor) {
+        double speed = Math.min(getCurrentSpeed() + speedFactor * amount, getEnginePower());
+        if (speed > getCurrentSpeed()) {
+            setCurrentSpeed(speed);
         }
     }
 
@@ -77,11 +75,8 @@ public class Motorized implements IMotorized {
      * @param amount
      */
     @Override
-    public void decrementSpeed(double amount) {
-        double speed = Math.max(getCurrentSpeed() - speedFactor() * amount, 0);
-        if (speed < getCurrentSpeed()) {
-            setCurrentSpeed(speed);
-        }
+    public void decrementSpeed(double amount, double speedFactor) {
+        vehicle.decrementSpeed(amount, speedFactor);
     }
 
     @Override
@@ -155,12 +150,14 @@ public class Motorized implements IMotorized {
     }
 
     @Override
-    public void gas(double amount) {
-        vehicle.gas(amount);
+    public void gas(double amount, double speedFactor) {
+        if (engineState) {
+            incrementSpeed(amount, speedFactor);
+        }
     }
 
     @Override
-    public void brake(double amount) {
-        vehicle.brake(amount);
+    public void brake(double amount, double speedFactor) {
+        vehicle.brake(amount, speedFactor);
     }
 }

@@ -1,6 +1,10 @@
 Finns det ett sätt att inte behöva ha alla metod bodies som inte ska ändras
 när man har ett object och interface av en abstraction?
 
+Varför kan jag inte göra overriden interface metoder privata?
+
+Hur gör jag runt incrementSpeed och dec.. som inte används i fordon objekten men måste ändå implementas?
+
 Refaktoriseringsplan:
 
 DONE:
@@ -42,3 +46,6 @@ Alla applikationerhar en ”main”-metod som går att exekvera. Denna hör inte
 
 CarController ska inte göra bilar och ha dom i sig. Gör en model class "World" där sånt hanteras.
 
+OPTIONAL
+
+Add stopVehicle för general och Motorized använder stopEngine, samma för start.

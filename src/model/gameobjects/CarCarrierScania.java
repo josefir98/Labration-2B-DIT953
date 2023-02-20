@@ -66,11 +66,11 @@ public class CarCarrierScania implements IMotorized, IPlatForm {
     }
 
     @Override
-    public void gas(double amount) {
+    public void gas(double amount, double speedFactor) {
         if (getPlatStage() != 0) {
             throw new RuntimeException("This vehicle cannot move if its platform is at more than 0 degrees!");
         } else {
-            motorized.gas(amount);
+            motorized.gas(amount, speedFactor);
         }
     }
 
@@ -95,13 +95,13 @@ public class CarCarrierScania implements IMotorized, IPlatForm {
     }
 
     @Override
-    public void incrementSpeed(double amount) {
-        motorized.incrementSpeed(amount);
+    public void incrementSpeed(double amount, double speedFactor) {
+        motorized.incrementSpeed(amount, speedFactor);
     }
 
     @Override
-    public void decrementSpeed(double amount) {
-        motorized.decrementSpeed(amount);
+    public void decrementSpeed(double amount, double speedFactor) {
+        motorized.decrementSpeed(amount, speedFactor);
     }
 
     @Override
@@ -175,7 +175,7 @@ public class CarCarrierScania implements IMotorized, IPlatForm {
     }
 
     @Override
-    public void brake(double amount) {
-        motorized.brake(amount);
+    public void brake(double amount, double speedFactor) {
+        motorized.brake(amount, speedFactor);
     }
 }

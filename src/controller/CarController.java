@@ -1,5 +1,6 @@
 package controller;
 
+import model.interfaces.IMotorized;
 import model.interfaces.IVehicle;
 import view.CarView;
 import model.Motorized;
@@ -32,7 +33,7 @@ public class CarController {
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
     // A list of cars, modify if needed
-    ArrayList<IVehicle> cars = new ArrayList<>();
+    ArrayList<IMotorized> cars = new ArrayList<>();
 
     //methods:
 
@@ -61,7 +62,7 @@ public class CarController {
      * */
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            for (IVehicle car : cars) {
+            for (IMotorized car : cars) {
                 wallCol(car);
                 car.move();
                 String name = car.getModelName();
@@ -75,7 +76,7 @@ public class CarController {
     }
 
     // If edge collision is detected, reverses direction.
-    private void wallCol(IVehicle car) {
+    private void wallCol(IMotorized car) {
         int x = (int) Math.round(car.getX());
         int y = (int) Math.round(car.getY());
         if (x < 0 || x > 800 || y < 0 || y > 560) {
@@ -87,21 +88,21 @@ public class CarController {
     // Calls the gas method for each car once
     public void gas(int amount) {
         double gas = ((double) amount) / 100;
-        for (IVehicle car : cars) {
-            car.gas(gas);
+        for (IMotorized car : cars) {
+            car.gas(gas, car.speedFactor());
         }
     }
 
     // Calls the brake method for each car once
     public void brake(int amount) {
         double brake = ((double) amount) / 100;
-        for (IVehicle car : cars) {
-            car.brake(brake);
+        for (IMotorized car : cars) {
+            car.brake(brake, car.speedFactor());
         }
     }
 
     public void turboOn() {
-        for (IVehicle car : cars) {
+        for (IMotorized car : cars) {
             if (car.getModelName() == "Saab95") {
                 Saab95 saab = (Saab95) car;
                 saab.setTurboOn();
@@ -109,7 +110,7 @@ public class CarController {
         }
     }
     public void turboOff() {
-        for (IVehicle car : cars) {
+        for (IMotorized car : cars) {
             if (car.getModelName() == "Saab95") {
                 Saab95 saab = (Saab95) car;
                 saab.setTurboOff();
@@ -118,7 +119,7 @@ public class CarController {
     }
 
     public void liftBed() {
-        for (IVehicle car : cars) {
+        for (IMotorized car : cars) {
             if (car.getModelName() == "Scania") {
                 Scania scania = (Scania) car;
                 scania.setPlatStage(70);
@@ -127,7 +128,7 @@ public class CarController {
     }
 
     public void lowerBed() {
-        for (IVehicle car : cars) {
+        for (IMotorized car : cars) {
             if (car.getModelName() == "Scania") {
                 Scania scania = (Scania) car;
                 scania.setPlatStage(0);
@@ -136,16 +137,14 @@ public class CarController {
     }
 
     public void startEngine() {
-        for (IVehicle car : cars) {
-            Motorized cur = (Motorized) car;
-            cur.startEngine();
+        for (IMotorized car : cars) {
+            car.startEngine();
         }
     }
 
     public void stopEngine() {
-        for (IVehicle car : cars) {
-            Motorized cur = (Motorized) car;
-            cur.stopEngine();
+        for (IMotorized car : cars) {
+            car.stopEngine();
         }
     }
 }
