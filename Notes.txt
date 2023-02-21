@@ -2,6 +2,14 @@ Hur kan knapparna vara i controller istället för view?
 
 Just nu när wCars uppdateras så clearas den och allt läggs till igen, bästa sättet?
 
+Clearity på hur Observer pattern kan implementas här?
+
+"Add car" ska antingen generera en slumpmässig bil eller en given bil. Båda eller en av dom?
+
+Är wrapper klassen en bra candidate att göras om till composite pattern?
+
+Vad krävs? Wrapper till composite, platform till state
+
 Refaktoriseringsplan:
 
 DONE:
@@ -46,3 +54,21 @@ Gör classes för platform, en till Scania och en för CarCarrierScania, allt sk
 OPTIONAL
 
 Add stopVehicle för general och Motorized använder stopEngine, samma för start.
+
+Uppgift:
+
+State pattern kan användas för platform states men onödnigt eftersom platform är så simpel.
+? Samma för Saab turbo. CarCarrierScania full, inte full states. Fordon motor off/on.
+
+Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
+? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
+
+Factory Pattern är bra för att skapa fordon och kommer va bra för framtiden när vi utökar funktionaliteten.
+Vehicle Factory {
+    create(String modelName)
+    createVolvo()
+    createRandom()
+}
+
+Observer Pattern candidates:
+gas, break.. dvs metoder i carController.
