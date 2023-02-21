@@ -58,6 +58,13 @@ Add stopVehicle för general och Motorized använder stopEngine, samma för star
 Uppgift:
 
 State pattern kan användas för platform states men onödnigt eftersom platform är så simpel.
+Ska hela platform repas av states eller composition av platform som implementar state?
+platformStateLocked {
+    gas()
+    lower()
+    rasie()
+    ...
+}
 ? Samma för Saab turbo. CarCarrierScania full, inte full states. Fordon motor off/on.
 
 Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
@@ -68,6 +75,7 @@ Vehicle Factory {
     create(String modelName)
     createVolvo()
     createRandom()
+    ...
 }
 
 Observer Pattern candidates:
