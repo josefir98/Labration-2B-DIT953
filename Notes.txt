@@ -1,74 +1,15 @@
-Hur kan knapparna vara i controller istället för view?
-
-Just nu när wCars uppdateras så clearas den och allt läggs till igen, bästa sättet?
-
-Clearity på hur Observer pattern kan implementas här?
-
-"Add car" ska antingen generera en slumpmässig bil eller en given bil. Båda eller en av dom?
-
-Är wrapper klassen en bra candidate att göras om till composite pattern?
-
-Vad krävs? Wrapper till composite, platform till state
-
 Refaktoriseringsplan:
-
-DONE:
-
-Gör om mappar till Model, View, Controller
-
-Steg för att bättre följa high cohesion, low coupling, DIP och composition over inheritance.
-1. Gör ett interface IVehicle och IMotorized
-2. IVehicle ska extenda Moveble
-3. Refaktorisera det som är i Car och Truck till Vehicle och ta bort dom.
-4. Vehicle, Motorized och alla fordon ska implementa IVehicle och IMotorized.
-5. Alla fordon ska ha en (has a) Vehicle och Motorized refernes.
-
-Gör en separat modul Application för att starta programmet
-Alla applikationerhar en ”main”-metod som går att exekvera.
-Denna hör inte till någon av MVC, utan ligger separat (”A”)
-
-CarController ska inte göra bilar och ha dom i sig. Gör en model class "World" där sånt hanteras.
-
-1. Gör en Wrapper class för att skicka namn och position från CarController till DrawPanel. Typ såhär:
-
-	Wrapper {
-		String name;
-		int x;
-		int y;
-		Wrapper(name, x, y) {
-			….
-		}
-	}
-2. Ha en map av alla bilder redo i DrawPanel så att bilder inte behöver bindas till en enskild bil.
-3. Gör en ArrayList <Wrapper> curState i drawPanel som används för att repainta.
-    Denna lista skapas och kommer uppdateras av CarController varje steg i TimerListener.
-4. TimerListener gör repaints varje iteration i loopen, onödigt, gör det efter alla bilar har uppdaterats.
-
 TODO:
-
-Steg för att bättre följa SoC, SRP, high cohesion och low coupling
 
 Förbättra platform med composition over inheritence
 Gör classes för platform, en till Scania och en för CarCarrierScania, allt ska implementa IPlatform
-
-OPTIONAL
-
-Add stopVehicle för general och Motorized använder stopEngine, samma för start.
-
-Uppgift:
-
-State pattern kan användas för platform states men onödnigt eftersom platform är så simpel.
-Ska hela platform repas av states eller composition av platform som implementar state?
+Sate platform?
 platformStateLocked {
     gas()
     lower()
     rasie()
     ...
 }
-? Samma för Saab turbo. CarCarrierScania full, inte full states. Fordon motor off/on.
-
-Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
-? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
 
 Factory Pattern är bra för att skapa fordon och kommer va bra för framtiden när vi utökar funktionaliteten.
 Vehicle Factory {
@@ -78,5 +19,23 @@ Vehicle Factory {
     ...
 }
 
-Observer Pattern candidates:
-gas, break.. dvs metoder i carController.
+Observer mellan model och view. Wrapper ska skapas i view
+
+Composite för IVehicle, kanske mer. Compositge klassen ska ha en lista med object
+som har gemensamma metoder som man vill kalla alla samtidigt.
+
+Gör UML.
+
+OPTIONAL
+
+Add stopVehicle för general och Motorized använder stopEngine, samma för start.
+
+För DUMB, listeners för knappar kan läggas till utifrån view,
+view har bara metoder för att binda listeners till knappen?
+
+DONE;
+
+Uppgift:
+
+Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
+? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
