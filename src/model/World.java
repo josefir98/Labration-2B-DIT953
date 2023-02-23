@@ -1,5 +1,6 @@
 package model;
 
+import controller.CarController;
 import model.gameobjects.Saab95;
 import model.gameobjects.Scania;
 import model.interfaces.IGraduatedPlatform;
@@ -8,11 +9,20 @@ import model.interfaces.IVehicle;
 import structure.IViewObserver;
 import structure.IViewSubject;
 
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class World implements IViewSubject {
     ArrayList<IViewObserver> observers; //TODO ska nog bara heta observer för world behöver inte veta att detta är till en view
     ArrayList<IVehicle> cars;
+
+    // The delay (ms) corresponds to 20 updates a sec (hz)
+    private final int delay = 50;
+    // The timer is started with an listener (see below) that executes the statements
+    // each step between delays.
+    private Timer timer = new Timer(delay, new World.TimerListener());
 
     public World(ArrayList<IVehicle> cars) {
         this.cars = cars;
@@ -20,15 +30,25 @@ public class World implements IViewSubject {
             cars.get(i).setY(i * 100);
         }
         observers = new ArrayList<>();
+
+        // Start the timer
+        timer.start();
+    }
+
+    /* Each step the TimerListener moves all the cars in the list and tells the
+     * view to update its images. Change this method to your needs.
+     * */
+    private class TimerListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            wallCol();
+            move();
+            notifyObservers(cars);
+        }
     }
 
     @Override
     public void addObserver(IViewObserver newObserver) {
         observers.add(newObserver);
-    }
-
-    public void notifyObservers() {
-        notifyObservers(cars);
     }
 
     @Override

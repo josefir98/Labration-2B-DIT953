@@ -1,6 +1,8 @@
 observers lista i model?
 hur ska drawPanel läggas i observer listan? ska ändras när view flyttas till app
 
+notify är bättre om den ientligen bara vara skickar en signal och inte skickar data. listenern ska bara veta att den ska pulla updates
+
 Refaktoriseringsplan:
 TODO:
 
