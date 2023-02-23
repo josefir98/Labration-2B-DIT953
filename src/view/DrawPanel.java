@@ -1,6 +1,7 @@
 package view;
 
 import model.Wrapper;
+import model.interfaces.IVehicle;
 import structure.IViewObserver;
 
 import java.awt.*;
@@ -14,35 +15,31 @@ import javax.swing.*;
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel implements IViewObserver {
-    private HashMap<String,BufferedImage> pics;
-    private ArrayList<Wrapper> cars;
-
-    private void getImages() {
-        pics = new HashMap<>();
-        // Print an error message in case file is not found with a try/catch block
-        try {
-            pics.put("Volvo240", ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/Volvo240.jpg")));
-            pics.put("Saab95", ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/Saab95.jpg")));
-            pics.put("Scania", ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/Scania.jpg")));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public void updateWrappers(ArrayList<Wrapper> cars) {
-        this.cars = cars;
-    }
+    private ArrayList<Wrapper> wCars;
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
         this.setDoubleBuffered(true);
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
-        getImages();
+        this.wCars = new ArrayList<>();
     }
 
     @Override
-    public void update(ArrayList<String> models, ArrayList<Double> xs, ArrayList<Double> ys) {
+    public void update(ArrayList<IVehicle> cars) {
+        wCars.clear();
+        for (IVehicle car : cars) {
+            String name = car.getModelName();
+            double x = car.getX();
+            double y = car.getY();
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(DrawPanel.class.getResourceAsStream("/assets/pics/" + name + ".jpg"));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            wCars.add(new Wrapper(name, x, y, image));
+        }
 
     }
 
@@ -50,11 +47,11 @@ public class DrawPanel extends JPanel implements IViewObserver {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Wrapper car : cars) {
+        for (Wrapper car : wCars) {
             String name = car.getName();
             int x = (int) Math.round(car.getX());
             int y = (int) Math.round(car.getY());
-            BufferedImage image = pics.get(name);
+            BufferedImage image = car.getImage();
             g.drawImage(image, x, y, null);
         }
     }

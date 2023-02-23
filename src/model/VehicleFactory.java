@@ -9,27 +9,28 @@ import java.awt.*;
 import java.util.Random;
 
 public class VehicleFactory {
-    public static Volvo240 createVolvo240(double x, double y) {
-        Volvo240 volvo240 = new Volvo240(Color.BLACK);
+    public static IVehicle createVolvo240(double x, double y) {
+        IVehicle volvo240 = new Volvo240(Color.BLACK);
         volvo240.setX(x);
         volvo240.setY(y);
         return volvo240;
     }
 
-    public static Saab95 createSaab95(double x, double y) {
-        Saab95 saab95 = new Saab95(Color.BLACK);
+    public static IVehicle createSaab95(double x, double y) {
+        IVehicle saab95 = new Saab95(Color.BLACK);
         saab95.setX(x);
         saab95.setY(y);
         return saab95;
     }
 
-    public static Scania createScania(double x, double y) {
-        Scania scania = new Scania(Color.BLACK);
+    public static IVehicle createScania(double x, double y) {
+        IVehicle scania = new Scania(Color.BLACK);
         scania.setX(x);
         scania.setY(y);
         return scania;
     }
 
+    // TODO Snabb lösning som bryter mot OCP
     public static IVehicle createRandom(double x, double y) {
         Random rand = new Random();
         int r = rand.nextInt(3);

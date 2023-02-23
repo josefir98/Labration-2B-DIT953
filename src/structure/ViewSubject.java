@@ -1,5 +1,7 @@
 package structure;
 
+import model.interfaces.IVehicle;
+
 import java.util.ArrayList;
 
 public class ViewSubject implements IViewSubject{
@@ -11,7 +13,7 @@ public class ViewSubject implements IViewSubject{
     }
 
     @Override
-    public void notifyObservers(ArrayList<String> models, ArrayList<Double> xs, ArrayList<Double> ys) {
-        observers.forEach(observer -> observer.update(models, xs, ys));
+    public void notifyObservers(ArrayList<IVehicle> cars) {
+        observers.forEach(observer -> observer.update(cars));
     }
 }

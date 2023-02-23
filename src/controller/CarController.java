@@ -3,6 +3,7 @@ package controller;
 import model.World;
 import model.Wrapper;
 import view.CarView;
+import view.DrawPanel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,23 +27,17 @@ public class CarController {
 
     // The frame that represents this instance View of the MVC pattern
     CarView frame;
-    // A list of cars, modify if needed
-    ArrayList<Wrapper> wCars;
-
     World world;
 
     //methods:
 
     public CarController(World world) {
         this.world = world;
-        this.wCars = this.world.getCars();
 
         // Start a new view and send a reference of self
-        frame = new CarView("CarSim 1.0", this);
-        wCars = world.getCars();
-        frame.drawPanel.updateWrappers(wCars);
+        frame = new CarView("CarSim 1.0", this); //TODO flytta till APP
         // Start the timer
-        timer.start();
+        timer.start(); // TODO Flytta till world
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -52,12 +47,14 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             world.wallCol();
             world.move();
-            world.updateWrappers();
-            wCars = world.getCars();
-            frame.drawPanel.updateWrappers(wCars);
             // repaint() calls the paintComponent method of the panel
+            world.notifyObservers();
             frame.drawPanel.repaint();
         }
+    }
+
+    public DrawPanel getDrawPanel() {
+        return frame.drawPanel;
     }
 
     // Calls the gas method for each car once

@@ -1,8 +1,5 @@
-Skall composite vara övergripande för IMotorized eller mer upp delad, dvs Movebles, vechicles...?
-
-i drawPanel hur kan jag göra för att inte cleara Wrapper varje update?
-
-static class struktur?
+observers lista i model?
+hur ska drawPanel läggas i observer listan? ska ändras när view flyttas till app
 
 Refaktoriseringsplan:
 TODO:
@@ -49,3 +46,5 @@ Uppgift:
 
 Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
 ? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
+Skall composite vara övergripande för IMotorized eller mer upp delad, dvs Movebles, vechicles...?
+Svar uppdelad men ok att ha stor för detta
