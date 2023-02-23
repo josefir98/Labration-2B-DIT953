@@ -1,7 +1,6 @@
 package model.gameobjects;
 
-import model.DualPlatform;
-import model.DualPlatformDown;
+import model.PlatformDown;
 import model.GraduatedPlatform;
 import model.Motorized;
 import model.interfaces.IGraduatedPlatform;
@@ -26,7 +25,7 @@ public class Scania implements IMotorized, IGraduatedPlatform {
      */
     public Scania(Color color) {
         motorized = new Motorized("Scania", color, 2, IVehicle.Size.MEDIUM, 90);
-        platform = new GraduatedPlatform(new DualPlatformDown(platform));
+        platform = new GraduatedPlatform(new PlatformDown(platform));
     }
 
     @Override
@@ -83,7 +82,7 @@ public class Scania implements IMotorized, IGraduatedPlatform {
      */
     @Override
     public void gas(double amount, double speedFactor) {
-        if (getPlatformState() instanceof DualPlatformDown) { //TODO getPlatformState().getClass() == DualPlatformDown.class better?
+        if (getPlatformState() instanceof PlatformDown) { //TODO getPlatformState().getClass() == DualPlatformDown.class better?
             motorized.gas(amount, speedFactor);
         } else {
             throw new RuntimeException("This vehicle cannot move if its platform is up");

@@ -8,12 +8,12 @@ public class GraduatedPlatform implements IGraduatedPlatform {
     private final int MAX_ANGLE = 70;
     private int angle;
 
-    public GraduatedPlatform(DualPlatformUp context) {
+    public GraduatedPlatform(PlatformUp context) {
         this.context = context;
         this.angle = MAX_ANGLE;
     }
 
-    public GraduatedPlatform(DualPlatformDown context) {
+    public GraduatedPlatform(PlatformDown context) {
         this.context = context;
         this.angle = 0;
     }
@@ -26,9 +26,9 @@ public class GraduatedPlatform implements IGraduatedPlatform {
         if (angle < 0 || angle > MAX_ANGLE) {
             throw new RuntimeException("The specified angle must be between 0 and 70 degrees!");
         } else if (newAngle == 0) {
-            setPlatformState(new DualPlatformDown(this));
+            setPlatformState(new PlatformDown(this));
         } else {
-            setPlatformState(new DualPlatformUp(this));
+            setPlatformState(new PlatformUp(this));
         }
         angle = newAngle;
     }

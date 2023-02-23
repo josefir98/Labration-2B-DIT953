@@ -1,7 +1,7 @@
 package model.gameobjects;
 
 import model.DualPlatform;
-import model.DualPlatformDown;
+import model.PlatformDown;
 import model.Motorized;
 import model.interfaces.IMotorized;
 import model.interfaces.IPlatform;
@@ -23,7 +23,7 @@ public class CarCarrierScania implements IMotorized, IPlatform {
      */
     public CarCarrierScania(Color color) {
         motorized = new Motorized("CarCarrierScania", color, 2, Size.MEDIUM, 95);
-        platform = new DualPlatform(new DualPlatformDown(platform));
+        platform = new DualPlatform(new PlatformDown(platform));
     }
 
     @Override
@@ -60,7 +60,7 @@ public class CarCarrierScania implements IMotorized, IPlatform {
 
     @Override
     public void gas(double amount, double speedFactor) {
-        if (getPlatformState() instanceof DualPlatformDown) { //TODO getPlatformState().getClass() == DualPlatformDown.class better?
+        if (getPlatformState() instanceof PlatformDown) { //TODO gör metod för canMove i I och ha logic i state klassen
             motorized.gas(amount, speedFactor);
         } else {
             throw new RuntimeException("This vehicle cannot move if its platform is up");
