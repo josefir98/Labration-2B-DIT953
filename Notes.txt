@@ -2,18 +2,10 @@
 Är det bättre att bara ha platup och down istället än dual och grad?
 borde grad ha ett eget interface som extendar iplat?
 
+static class struktur?
+
 Refaktoriseringsplan:
 TODO:
-
-Förbättra platform med composition over inheritence
-Gör classes för platform, en till Scania och en för CarCarrierScania, allt ska implementa IPlatform
-Sate platform?
-platformStateLocked {
-    gas()
-    lower()
-    rasie()
-    ...
-}
 
 Factory Pattern är bra för att skapa fordon och kommer va bra för framtiden när vi utökar funktionaliteten.
 Vehicle Factory {
@@ -37,7 +29,17 @@ Add stopVehicle för general och Motorized använder stopEngine, samma för star
 För DUMB, listeners för knappar kan läggas till utifrån view,
 view har bara metoder för att binda listeners till knappen?
 
-DONE;
+DONE:
+
+Förbättra platform med composition over inheritence
+Gör classes för platform, en till Scania och en för CarCarrierScania, allt ska implementa IPlatform
+Sate platform?
+platformStateLocked {
+    gas()
+    lower()
+    rasie()
+    ...
+}
 
 Uppgift:
 

@@ -9,28 +9,28 @@ import java.awt.*;
 import java.util.Random;
 
 public class VehicleFactory {
-    public Volvo240 createVolvo240(double x, double y) {
+    public static Volvo240 createVolvo240(double x, double y) {
         Volvo240 volvo240 = new Volvo240(Color.BLACK);
         volvo240.setX(x);
         volvo240.setY(y);
         return volvo240;
     }
 
-    public Saab95 createSaab95(double x, double y) {
+    public static Saab95 createSaab95(double x, double y) {
         Saab95 saab95 = new Saab95(Color.BLACK);
         saab95.setX(x);
         saab95.setY(y);
         return saab95;
     }
 
-    public Scania createScania(double x, double y) {
+    public static Scania createScania(double x, double y) {
         Scania scania = new Scania(Color.BLACK);
         scania.setX(x);
         scania.setY(y);
         return scania;
     }
 
-    public IVehicle createRandom(double x, double y) {
+    public static IVehicle createRandom(double x, double y) {
         Random rand = new Random();
         int r = rand.nextInt(3);
         IVehicle vehicle;
