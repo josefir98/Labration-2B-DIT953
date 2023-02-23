@@ -5,7 +5,7 @@ import model.interfaces.IMotorized;
 import java.util.Stack;
 
 public class Storage<T extends IMotorized, L extends IMotorized> {
-    private Stack<T> storage = new Stack<T>();
+    private final Stack<T> storage = new Stack<T>();
 
     /**
      * Unloads car from truck and places it within a reasonable distance from truck if platStage is open (1)

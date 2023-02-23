@@ -1,14 +1,9 @@
 import controller.CarController;
 import model.VehicleFactory;
 import model.World;
-import model.gameobjects.Saab95;
-import model.gameobjects.Scania;
-import model.gameobjects.Volvo240;
-import model.interfaces.IMotorized;
 import model.interfaces.IVehicle;
 import view.CarView;
 
-import java.awt.*;
 import java.util.ArrayList;
 
 public class Application {

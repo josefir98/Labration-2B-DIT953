@@ -4,7 +4,7 @@ import model.interfaces.IPlatform;
 
 public class PlatformDown implements IPlatform {
 
-    private IPlatform context;
+    private final IPlatform context;
 
     public PlatformDown(IPlatform context) {
         this.context = context;

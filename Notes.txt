@@ -5,44 +5,9 @@ public interface ITest {
     abstract void method();
 }
 
+massa ställen där mer composites kan göras, vehicles, motorized, platform, turbo...
+
 Refaktoriseringsplan:
-TODO:
-
-Composite för IVehicle, kanske mer. Compositge klassen ska ha en lista med object
-som har gemensamma metoder som man vill kalla alla samtidigt.
-
-movables {
-    Vehciles {
-        motorized {
-
-        }
-        platform {
-
-        }
-    }
-}
-Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
-? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
-Skall composite vara övergripande för IMotorized eller mer upp delad, dvs Movebles, vechicles...?
-Svar uppdelad men ok att ha stor för detta
-
-Gör UML.
-
-OPTIONAL
 
 factory och andra ställen kan gå fler steg ut ur hyrarkin (IVehicle -> IMovable...)
-
-Add stopVehicle för general och Motorized använder stopEngine, samma för start.
-
-För DUMB, listeners för knappar kan läggas till utifrån view,
-view har bara metoder för att binda listeners till knappen?
-
-notify är bättre om den ientligen bara vara skickar en signal och inte skickar data. listenern ska bara veta att den ska pulla updates
-
-createRandom är inte OCP
-
-DONE:
-
-
-Uppgift:
 

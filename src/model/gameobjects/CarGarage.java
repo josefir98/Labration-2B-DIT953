@@ -5,7 +5,7 @@ import model.interfaces.IMotorized;
 import java.util.ArrayList;
 
 public class CarGarage<T extends IMotorized> {
-    private int maxCars;
+    private final int maxCars;
     private ArrayList<T> cars = new ArrayList<T>();
 
     public CarGarage(int maxCars) {

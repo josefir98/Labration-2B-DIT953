@@ -10,7 +10,6 @@ import model.World;
 
 public class CarController {
     // member fields:
-
     World world;
 
     //methods:
@@ -19,6 +18,12 @@ public class CarController {
         this.world = world;
     }
 
+    public void addCar() {
+        world.addCar();
+    }
+    public void removeCar() {
+        world.removeCar();
+    }
     // Calls the gas method for each car once
     public void gas(int amount) {
         world.gas(amount);

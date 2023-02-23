@@ -11,10 +11,10 @@ import java.awt.*;
 
 public class CarCarrierScania implements IMotorized, IPlatform {
     private final static double trimFactor = 1.1;
-    private Storage<IMotorized, CarCarrierScania> carsStored = new Storage();
+    private final Storage<IMotorized, CarCarrierScania> carsStored = new Storage();
     private IPlatform platform;
 
-    private Motorized motorized;
+    private final Motorized motorized;
 
     /**
      * Superclass for CarCarrierScania
@@ -22,7 +22,7 @@ public class CarCarrierScania implements IMotorized, IPlatform {
      * @param color is the color of the car carier
      */
     public CarCarrierScania(Color color) {
-        motorized = new Motorized("CarCarrierScania", color, 2, Size.MEDIUM, 95);
+        motorized = new Motorized("CarCarrierScania", color, 2, Size.LARGE, 95);
         platform = new DualPlatform(new PlatformDown(platform));
     }
 

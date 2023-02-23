@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class World implements IViewSubject, IComposite {
+
+    private final int MAX_CARS = 10;
     ArrayList<IViewObserver> observers;
     ArrayList<IVehicle> cars;
 
@@ -38,6 +40,19 @@ public class World implements IViewSubject, IComposite {
 
         // Start the timer
         timer.start();
+    }
+
+    public void addCar() {
+        if (cars.size() < MAX_CARS) {
+            IVehicle car = VehicleFactory.createRandom(250, 250);
+            cars.add(car);
+            addComponent(car);
+        }
+    }
+    public void removeCar() {
+        if (!cars.isEmpty()) {
+            removeComponent(cars.remove(0));
+        }
     }
 
     @Override

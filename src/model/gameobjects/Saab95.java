@@ -10,7 +10,7 @@ public class Saab95 implements IMotorized {
 
     private boolean turboOn;
 
-    private Motorized motorized;
+    private final Motorized motorized;
 
     /**
      * constructor for Models.Saab95 using the superclass in the car.java file. Color can be specified here

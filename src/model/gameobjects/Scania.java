@@ -16,7 +16,7 @@ public class Scania implements IMotorized, IGraduatedPlatform {
 
     private IGraduatedPlatform platform;
 
-    private Motorized motorized;
+    private final Motorized motorized;
 
     /**
      * Superclass for Scania
@@ -24,7 +24,7 @@ public class Scania implements IMotorized, IGraduatedPlatform {
      * @param color is the color of scania
      */
     public Scania(Color color) {
-        motorized = new Motorized("Scania", color, 2, IVehicle.Size.MEDIUM, 90);
+        motorized = new Motorized("Scania", color, 2, Size.LARGE, 90);
         platform = new GraduatedPlatform(new PlatformDown(platform));
     }
 

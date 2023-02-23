@@ -4,7 +4,7 @@ import model.interfaces.IPlatform;
 
 public class PlatformUp implements IPlatform {
 
-    private IPlatform context;
+    private final IPlatform context;
 
     public PlatformUp(IPlatform context) {
         this.context = context;

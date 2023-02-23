@@ -5,8 +5,8 @@ import model.interfaces.IMotorized;
 import java.awt.*;
 
 public class Motorized implements IMotorized {
-    private Vehicle vehicle;
-    private double enginePower; // Engine power of the car
+    private final Vehicle vehicle;
+    private final double enginePower; // Engine power of the car
     private boolean engineState; // Engine power of the car
 
     /**

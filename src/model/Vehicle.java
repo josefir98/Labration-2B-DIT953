@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Vehicle implements IVehicle {
 
-    private String modelName; // The car model name
+    private final String modelName; // The car model name
     private Color color; // Color of the car
     private double currentSpeed; // The current speed of the car
     private double x;

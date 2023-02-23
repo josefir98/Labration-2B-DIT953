@@ -9,7 +9,7 @@ public class Volvo240 implements IMotorized {
 
     private final static double trimFactor = 1.25;
 
-    private Motorized motorized;
+    private final Motorized motorized;
 
     /**
      * constructor for Models.Volvo240 using the superclass in the car.java file. Color can be specified here
