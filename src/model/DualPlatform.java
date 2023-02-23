@@ -2,31 +2,31 @@ package model;
 
 import model.interfaces.IPlatform;
 
-public class DualPlatformDown implements IPlatform {
+public class DualPlatform implements IPlatform {
 
     private IPlatform context;
 
-    public DualPlatformDown(IPlatform context) {
+    public DualPlatform(IPlatform context) {
         this.context = context;
     }
 
     @Override
     public void lower() {
-        // ok if empty?
+        context.lower();
     }
 
     @Override
     public void lift() {
-        setPlatformState(new DualPlatformUp(context));
+        context.lift();
     }
 
     @Override
     public void setPlatformState(IPlatform state) {
-        context.setPlatformState(state);
+        context = state;
     }
 
     @Override
     public IPlatform getPlatformState() {
-        return this;
+        return context.getPlatformState();
     }
 }

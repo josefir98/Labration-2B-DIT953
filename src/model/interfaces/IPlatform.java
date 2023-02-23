@@ -3,8 +3,10 @@ package model.interfaces;
 /**
  * Interface for things that have a platform
  */
-public interface IPlatForm {
+public interface IPlatform {
     void lower();
     void lift();
-    void gas();
+    void setPlatformState(IPlatform state);
+
+    IPlatform getPlatformState();
 }

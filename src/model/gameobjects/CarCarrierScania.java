@@ -1,16 +1,18 @@
 package model.gameobjects;
 
+import model.DualPlatform;
+import model.DualPlatformDown;
 import model.Motorized;
 import model.interfaces.IMotorized;
-import model.interfaces.IPlatForm;
+import model.interfaces.IPlatform;
 import model.Storage;
 
 import java.awt.*;
 
-public class CarCarrierScania implements IMotorized, IPlatForm {
+public class CarCarrierScania implements IMotorized, IPlatform {
     private final static double trimFactor = 1.1;
     private Storage<IMotorized, CarCarrierScania> carsStored = new Storage();
-    private int platformStage;
+    private IPlatform platform;
 
     private Motorized motorized;
 
@@ -21,7 +23,31 @@ public class CarCarrierScania implements IMotorized, IPlatForm {
      */
     public CarCarrierScania(Color color) {
         motorized = new Motorized("CarCarrierScania", color, 2, Size.MEDIUM, 95);
-        platformStage = 0;
+        platform = new DualPlatform(new DualPlatformDown(platform));
+    }
+
+    @Override
+    public void lower() {
+        platform.lower();
+    }
+
+    @Override
+    public void lift() {
+        if (getCurrentSpeed() == 0) {
+            platform.lift();
+        } else {
+            throw new RuntimeException("Vehicle must be still to change platform stage!");
+        }
+    }
+
+    @Override
+    public void setPlatformState(IPlatform state) {
+        platform.setPlatformState(state);
+    }
+
+    @Override
+    public IPlatform getPlatformState() {
+        return platform.getPlatformState();
     }
 
     /**
@@ -29,48 +55,15 @@ public class CarCarrierScania implements IMotorized, IPlatForm {
      */
     @Override
     public double speedFactor() {
-        if (getPlatStage() == 0) {
-            return getEnginePower() * 0.01 * trimFactor;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Getter for PlatformStage
-     *
-     * @return
-     */
-    @Override
-    public int getPlatStage() {
-        return platformStage;
-    }
-
-    /**
-     * Setter for PlatformStage
-     * Checks if stage is open or closed (1 or 0)
-     *
-     * @param stage is the state of the truck door
-     */
-    @Override
-    public void setPlatStage(int stage) {
-        if (getCurrentSpeed() == 0) {
-            if (stage == 0 || stage == 1) {
-                platformStage = stage;
-            } else {
-                throw new RuntimeException("This platforms has 2 stages, 0 and 1!");
-            }
-        } else {
-            throw new RuntimeException("Generics.Vehicle must be still too change platform stage!");
-        }
+        return getEnginePower() * 0.01 * trimFactor;
     }
 
     @Override
     public void gas(double amount, double speedFactor) {
-        if (getPlatStage() != 0) {
-            throw new RuntimeException("This vehicle cannot move if its platform is at more than 0 degrees!");
-        } else {
+        if (getPlatformState() instanceof DualPlatformDown) { //TODO getPlatformState().getClass() == DualPlatformDown.class better?
             motorized.gas(amount, speedFactor);
+        } else {
+            throw new RuntimeException("This vehicle cannot move if its platform is up");
         }
     }
 

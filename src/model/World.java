@@ -2,6 +2,7 @@ package model;
 
 import model.gameobjects.Saab95;
 import model.gameobjects.Scania;
+import model.interfaces.IGraduatedPlatform;
 import model.interfaces.IMotorized;
 
 import java.util.ArrayList;
@@ -87,8 +88,8 @@ public class World {
     public void liftBed() {
         for (IMotorized car : cars) {
             if (car.getModelName().equals("Scania")) {
-                Scania scania = (Scania) car;
-                scania.setPlatStage(70);
+                IGraduatedPlatform scania = (IGraduatedPlatform) car;
+                scania.setAngle(70);
             }
         }
     }
@@ -96,8 +97,8 @@ public class World {
     public void lowerBed() {
         for (IMotorized car : cars) {
             if (car.getModelName().equals("Scania")) {
-                Scania scania = (Scania) car;
-                scania.setPlatStage(0);
+                IGraduatedPlatform scania = (IGraduatedPlatform) car;
+                scania.setAngle(0);
             }
         }
     }

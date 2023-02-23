@@ -1,3 +1,7 @@
+Är det ok att platform states är såpas barebones?
+Är det bättre att bara ha platup och down istället än dual och grad?
+borde grad ha ett eget interface som extendar iplat?
+
 Refaktoriseringsplan:
 TODO:
 

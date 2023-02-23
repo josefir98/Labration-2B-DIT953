@@ -1,17 +1,21 @@
 package model.gameobjects;
 
+import model.DualPlatform;
+import model.DualPlatformDown;
+import model.GraduatedPlatform;
 import model.Motorized;
+import model.interfaces.IGraduatedPlatform;
 import model.interfaces.IMotorized;
-import model.interfaces.IPlatForm;
+import model.interfaces.IPlatform;
 import model.interfaces.IVehicle;
 
 import java.awt.*;
 
-public class Scania implements IMotorized, IPlatForm {
+public class Scania implements IMotorized, IGraduatedPlatform {
 
     private final static double trimFactor = 1;
 
-    private int platformStage;
+    private IGraduatedPlatform platform;
 
     private Motorized motorized;
 
@@ -22,7 +26,45 @@ public class Scania implements IMotorized, IPlatForm {
      */
     public Scania(Color color) {
         motorized = new Motorized("Scania", color, 2, IVehicle.Size.MEDIUM, 90);
-        platformStage = 0;
+        platform = new GraduatedPlatform(new DualPlatformDown(platform));
+    }
+
+    @Override
+    public int getAngle() {
+        return platform.getAngle();
+    }
+
+    @Override
+    public void setAngle(int newAngle) {
+        if (getCurrentSpeed() == 0) {
+            platform.setAngle(newAngle);
+        } else {
+            throw new RuntimeException("Vehicle must be still to change platform stage!");
+        }
+    }
+
+    @Override
+    public void lower() {
+        platform.lower();
+    }
+
+    @Override
+    public void lift() {
+        if (getCurrentSpeed() == 0) {
+            platform.lift();
+        } else {
+            throw new RuntimeException("Vehicle must be still to change platform stage!");
+        }
+    }
+
+    @Override
+    public void setPlatformState(IPlatform state) {
+        platform.setPlatformState(state);
+    }
+
+    @Override
+    public IPlatform getPlatformState() {
+        return platform.getPlatformState();
     }
 
     /**
@@ -30,40 +72,7 @@ public class Scania implements IMotorized, IPlatForm {
      */
     @Override
     public double speedFactor() {
-        if (getPlatStage() == 0) {
-            return getEnginePower() * 0.01 * trimFactor;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * Getter for platform stage (how open the door is)
-     *
-     * @return
-     */
-    @Override
-    public int getPlatStage() {
-        return platformStage;
-    }
-
-    /**
-     * Setter for platformstage
-     * Checks if platformstage is between 0 and 70 degrees
-     *
-     * @param degree
-     */
-    @Override
-    public void setPlatStage(int degree) {
-        if (getCurrentSpeed() == 0) {
-            if (degree >= 0 && degree <= 70) {
-                platformStage = degree;
-            } else {
-                throw new RuntimeException("This platforms range is between 0-70 degrees!");
-            }
-        } else {
-            throw new RuntimeException("Vehicle must be still too change platform stage!");
-        }
+        return getEnginePower() * 0.01 * trimFactor;
     }
 
     /**
@@ -74,10 +83,10 @@ public class Scania implements IMotorized, IPlatForm {
      */
     @Override
     public void gas(double amount, double speedFactor) {
-        if (getPlatStage() != 0) {
-            throw new RuntimeException("This vehicle cannot move if its platform is at more than 0 degrees!");
-        } else {
+        if (getPlatformState() instanceof DualPlatformDown) { //TODO getPlatformState().getClass() == DualPlatformDown.class better?
             motorized.gas(amount, speedFactor);
+        } else {
+            throw new RuntimeException("This vehicle cannot move if its platform is up");
         }
     }
 

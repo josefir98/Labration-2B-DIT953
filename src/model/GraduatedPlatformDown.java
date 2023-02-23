@@ -2,11 +2,11 @@ package model;
 
 import model.interfaces.IPlatform;
 
-public class DualPlatformDown implements IPlatform {
+public class GraduatedPlatformDown implements IPlatform {
 
-    private IPlatform context;
+    private final IPlatform context;
 
-    public DualPlatformDown(IPlatform context) {
+    public GraduatedPlatformDown(IPlatform context) {
         this.context = context;
     }
 
