@@ -24,9 +24,6 @@ public class CarController {
     // The timer is started with an listener (see below) that executes the statements
     // each step between delays.
     private Timer timer = new Timer(delay, new TimerListener());
-
-    // The frame that represents this instance View of the MVC pattern
-    CarView frame;
     World world;
 
     //methods:
@@ -34,8 +31,7 @@ public class CarController {
     public CarController(World world) {
         this.world = world;
 
-        // Start a new view and send a reference of self
-        frame = new CarView("CarSim 1.0", this); //TODO flytta till APP
+
         // Start the timer
         timer.start(); // TODO Flytta till world
     }
@@ -49,12 +45,7 @@ public class CarController {
             world.move();
             // repaint() calls the paintComponent method of the panel
             world.notifyObservers();
-            frame.drawPanel.repaint();
         }
-    }
-
-    public DrawPanel getDrawPanel() {
-        return frame.drawPanel;
     }
 
     // Calls the gas method for each car once

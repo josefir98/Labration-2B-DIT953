@@ -6,6 +6,7 @@ import model.gameobjects.Scania;
 import model.gameobjects.Volvo240;
 import model.interfaces.IMotorized;
 import model.interfaces.IVehicle;
+import view.CarView;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -19,8 +20,10 @@ public class Application {
         cars.add(VehicleFactory.createScania(0, 0));
 
         World world = new World(cars);
-
         CarController cc = new CarController(world);
-        world.addObserver(cc.getDrawPanel());
+        // The frame that represents this instance View of the MVC pattern
+        CarView frame = new CarView("CarSim 1.0", cc);
+
+        world.addObserver(frame.drawPanel);
     }
 }

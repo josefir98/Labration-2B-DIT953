@@ -40,7 +40,7 @@ public class DrawPanel extends JPanel implements IViewObserver {
             }
             wCars.add(new Wrapper(name, x, y, image));
         }
-
+        repaint();
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
