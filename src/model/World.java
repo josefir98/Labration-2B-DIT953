@@ -34,6 +34,7 @@ public class World implements IViewSubject, IComposite {
         }
         observers = new ArrayList<>();
         movables = new MovableComposite();
+        cars.forEach(this::addComponent);
 
         // Start the timer
         timer.start();
@@ -85,12 +86,6 @@ public class World implements IViewSubject, IComposite {
             }
         }
     }
-
-    /*public void move() {
-        for (IVehicle car : cars) {
-            car.move();
-        }
-    }*/
 
     public void move() {
         movables.move();

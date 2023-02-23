@@ -24,9 +24,6 @@ public class Application {
         cars.add(scania);
 
         World world = new World(cars);
-        world.addComponent(volvo);
-        world.addComponent(saab);
-        world.addComponent(scania);
 
         CarController cc = new CarController(world);
         // The frame that represents this instance View of the MVC pattern
