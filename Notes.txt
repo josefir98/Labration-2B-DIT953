@@ -1,6 +1,6 @@
-Är det ok att platform states är såpas barebones?
-Är det bättre att bara ha platup och down istället än dual och grad?
-borde grad ha ett eget interface som extendar iplat?
+Skall composite vara övergripande för IMotorized eller mer upp delad, dvs Movebles, vechicles...?
+
+i drawPanel hur kan jag göra för att inte cleara Wrapper varje update?
 
 static class struktur?
 
@@ -8,9 +8,13 @@ Refaktoriseringsplan:
 TODO:
 
 Observer mellan model och view. Wrapper ska skapas i view
+metod(list<String>, list<x>, list<y>)
 
 Composite för IVehicle, kanske mer. Compositge klassen ska ha en lista med object
 som har gemensamma metoder som man vill kalla alla samtidigt.
+I Vehciles {
+
+}
 
 Gör UML.
 

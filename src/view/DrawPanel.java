@@ -1,6 +1,7 @@
 package view;
 
 import model.Wrapper;
+import structure.IViewObserver;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -12,7 +13,7 @@ import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel {
+public class DrawPanel extends JPanel implements IViewObserver {
     private HashMap<String,BufferedImage> pics;
     private ArrayList<Wrapper> cars;
 
@@ -38,6 +39,11 @@ public class DrawPanel extends JPanel {
         this.setPreferredSize(new Dimension(x, y));
         this.setBackground(Color.green);
         getImages();
+    }
+
+    @Override
+    public void update(ArrayList<String> models, ArrayList<Double> xs, ArrayList<Double> ys) {
+
     }
 
     // This method is called each time the panel updates/refreshes/repaints itself
