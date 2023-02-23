@@ -7,14 +7,6 @@ static class struktur?
 Refaktoriseringsplan:
 TODO:
 
-Factory Pattern är bra för att skapa fordon och kommer va bra för framtiden när vi utökar funktionaliteten.
-Vehicle Factory {
-    create(String modelName)
-    createVolvo()
-    createRandom()
-    ...
-}
-
 Observer mellan model och view. Wrapper ska skapas i view
 
 Composite för IVehicle, kanske mer. Compositge klassen ska ha en lista med object
@@ -38,6 +30,14 @@ platformStateLocked {
     gas()
     lower()
     rasie()
+    ...
+}
+
+Factory Pattern är bra för att skapa fordon och kommer va bra för framtiden när vi utökar funktionaliteten.
+Vehicle Factory {
+    create(String modelName)
+    createVolvo()
+    createRandom()
     ...
 }
 
