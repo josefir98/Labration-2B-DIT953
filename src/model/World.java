@@ -1,22 +1,25 @@
 package model;
 
-import controller.CarController;
 import model.gameobjects.Saab95;
-import model.gameobjects.Scania;
 import model.interfaces.IGraduatedPlatform;
 import model.interfaces.IMotorized;
+import model.interfaces.IMovable;
 import model.interfaces.IVehicle;
-import structure.IViewObserver;
-import structure.IViewSubject;
+import structure.observer.IViewObserver;
+import structure.observer.IViewSubject;
+import structure.composites.IComposite;
+import structure.composites.MovableComposite;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class World implements IViewSubject {
+public class World implements IViewSubject, IComposite {
     ArrayList<IViewObserver> observers;
     ArrayList<IVehicle> cars;
+
+    MovableComposite movables;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
     private final int delay = 50;
@@ -30,9 +33,20 @@ public class World implements IViewSubject {
             cars.get(i).setY(i * 100);
         }
         observers = new ArrayList<>();
+        movables = new MovableComposite();
 
         // Start the timer
         timer.start();
+    }
+
+    @Override
+    public void addComponent(IMovable component) {
+        movables.addComponent(component);
+    }
+
+    @Override
+    public void removeComponent(IMovable component) {
+        movables.removeComponent(component);
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -72,10 +86,14 @@ public class World implements IViewSubject {
         }
     }
 
-    public void move() {
+    /*public void move() {
         for (IVehicle car : cars) {
             car.move();
         }
+    }*/
+
+    public void move() {
+        movables.move();
     }
 
     // Calls the gas method for each car once

@@ -2,7 +2,7 @@ package view;
 
 import model.VehicleWrapper;
 import model.interfaces.IVehicle;
-import structure.IViewObserver;
+import structure.observer.IViewObserver;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

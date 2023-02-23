@@ -1,4 +1,4 @@
-package structure;
+package structure.observer;
 
 import model.interfaces.IVehicle;
 
