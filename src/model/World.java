@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class World implements IViewSubject {
-    ArrayList<IViewObserver> observers; //TODO ska nog bara heta observer för world behöver inte veta att detta är till en view
+    ArrayList<IViewObserver> observers;
     ArrayList<IVehicle> cars;
 
     // The delay (ms) corresponds to 20 updates a sec (hz)

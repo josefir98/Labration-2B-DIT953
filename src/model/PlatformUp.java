@@ -29,4 +29,9 @@ public class PlatformUp implements IPlatform {
     public IPlatform getPlatformState() {
         return this;
     }
+
+    @Override
+    public boolean isDown() {
+        return false;
+    }
 }

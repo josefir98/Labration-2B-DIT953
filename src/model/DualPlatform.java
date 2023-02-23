@@ -29,4 +29,9 @@ public class DualPlatform implements IPlatform {
     public IPlatform getPlatformState() {
         return context.getPlatformState();
     }
+
+    @Override
+    public boolean isDown() {
+        return context.isDown();
+    }
 }

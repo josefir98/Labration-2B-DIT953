@@ -58,4 +58,9 @@ public class GraduatedPlatform implements IGraduatedPlatform {
     public IPlatform getPlatformState() {
         return context.getPlatformState();
     }
+
+    @Override
+    public boolean isDown() {
+        return context.isDown();
+    }
 }

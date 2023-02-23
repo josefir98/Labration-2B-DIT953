@@ -30,7 +30,7 @@ public class VehicleFactory {
         return scania;
     }
 
-    // TODO Snabb lösning som bryter mot OCP
+    // Snabb lösning som bryter mot OCP
     public static IVehicle createRandom(double x, double y) {
         Random rand = new Random();
         int r = rand.nextInt(3);

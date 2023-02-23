@@ -66,6 +66,11 @@ public class Scania implements IMotorized, IGraduatedPlatform {
         return platform.getPlatformState();
     }
 
+    @Override
+    public boolean isDown() {
+        return platform.isDown();
+    }
+
     /**
      * How fast the truck can accelerate
      */
@@ -82,7 +87,7 @@ public class Scania implements IMotorized, IGraduatedPlatform {
      */
     @Override
     public void gas(double amount, double speedFactor) {
-        if (getPlatformState() instanceof PlatformDown) { //TODO getPlatformState().getClass() == DualPlatformDown.class better?
+        if (isDown()) {
             motorized.gas(amount, speedFactor);
         } else {
             throw new RuntimeException("This vehicle cannot move if its platform is up");

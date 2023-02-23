@@ -1,6 +1,6 @@
 package view;
 
-import model.Wrapper;
+import model.VehicleWrapper;
 import model.interfaces.IVehicle;
 import structure.IViewObserver;
 
@@ -8,14 +8,13 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel implements IViewObserver {
-    private ArrayList<Wrapper> wCars;
+    private ArrayList<VehicleWrapper> wCars;
 
     // Initializes the panel and reads the images
     public DrawPanel(int x, int y) {
@@ -38,7 +37,7 @@ public class DrawPanel extends JPanel implements IViewObserver {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            wCars.add(new Wrapper(name, x, y, image));
+            wCars.add(new VehicleWrapper(name, x, y, image));
         }
         repaint();
     }
@@ -47,7 +46,7 @@ public class DrawPanel extends JPanel implements IViewObserver {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Wrapper car : wCars) {
+        for (VehicleWrapper car : wCars) {
             String name = car.getName();
             int x = (int) Math.round(car.getX());
             int y = (int) Math.round(car.getY());

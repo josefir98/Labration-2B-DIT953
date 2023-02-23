@@ -1,18 +1,15 @@
 package model;
 
-import view.DrawPanel;
-
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
-public class Wrapper { //TODO hitta bättre namn
+public class VehicleWrapper {
     String name;
     double x;
     double y;
-
     BufferedImage image;
-    public Wrapper(String name, double x, double y, BufferedImage image) {
+
+    // Finns det en regel angående this.x = ... vs använda set metoder?
+    public VehicleWrapper(String name, double x, double y, BufferedImage image) {
         this.name = name;
         this.x = x;
         this.y = y;

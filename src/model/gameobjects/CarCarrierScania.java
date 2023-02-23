@@ -50,6 +50,11 @@ public class CarCarrierScania implements IMotorized, IPlatform {
         return platform.getPlatformState();
     }
 
+    @Override
+    public boolean isDown() {
+        return platform.isDown();
+    }
+
     /**
      * How fast the truck can accelerate
      */
@@ -60,7 +65,7 @@ public class CarCarrierScania implements IMotorized, IPlatform {
 
     @Override
     public void gas(double amount, double speedFactor) {
-        if (getPlatformState() instanceof PlatformDown) { //TODO gör metod för canMove i I och ha logic i state klassen
+        if (isDown()) {
             motorized.gas(amount, speedFactor);
         } else {
             throw new RuntimeException("This vehicle cannot move if its platform is up");

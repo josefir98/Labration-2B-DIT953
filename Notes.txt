@@ -1,19 +1,17 @@
-observers lista i model?
-hur ska drawPanel läggas i observer listan? ska ändras när view flyttas till app
 
-notify är bättre om den ientligen bara vara skickar en signal och inte skickar data. listenern ska bara veta att den ska pulla updates
 
 Refaktoriseringsplan:
 TODO:
-
-Observer mellan model och view. Wrapper ska skapas i view
-metod(list<String>, list<x>, list<y>)
 
 Composite för IVehicle, kanske mer. Compositge klassen ska ha en lista med object
 som har gemensamma metoder som man vill kalla alla samtidigt.
 I Vehciles {
 
 }
+Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
+? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
+Skall composite vara övergripande för IMotorized eller mer upp delad, dvs Movebles, vechicles...?
+Svar uppdelad men ok att ha stor för detta
 
 Gör UML.
 
@@ -24,29 +22,12 @@ Add stopVehicle för general och Motorized använder stopEngine, samma för star
 För DUMB, listeners för knappar kan läggas till utifrån view,
 view har bara metoder för att binda listeners till knappen?
 
+notify är bättre om den ientligen bara vara skickar en signal och inte skickar data. listenern ska bara veta att den ska pulla updates
+
+createRandom är inte OCP
+
 DONE:
 
-Förbättra platform med composition over inheritence
-Gör classes för platform, en till Scania och en för CarCarrierScania, allt ska implementa IPlatform
-Sate platform?
-platformStateLocked {
-    gas()
-    lower()
-    rasie()
-    ...
-}
-
-Factory Pattern är bra för att skapa fordon och kommer va bra för framtiden när vi utökar funktionaliteten.
-Vehicle Factory {
-    create(String modelName)
-    createVolvo()
-    createRandom()
-    ...
-}
 
 Uppgift:
 
-Composite Pattern: Treat a group of objects uniformly as if they were a single instance of an object of that type.
-? Detta gör vi redan med polumorphismen av fordon och ses i World där allt ses som en IMotorized / IVehicle.
-Skall composite vara övergripande för IMotorized eller mer upp delad, dvs Movebles, vechicles...?
-Svar uppdelad men ok att ha stor för detta
