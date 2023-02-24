@@ -1,6 +1,6 @@
-package model;
+package model.platform;
 
-import model.interfaces.IPlatform;
+import model.platform.IPlatform;
 
 public class DualPlatform implements IPlatform {
 

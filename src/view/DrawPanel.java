@@ -1,6 +1,5 @@
 package view;
 
-import model.VehicleWrapper;
 import model.interfaces.IVehicle;
 import structure.observer.IViewObserver;
 

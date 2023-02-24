@@ -1,7 +1,4 @@
-package model;
-
-import model.interfaces.IGraduatedPlatform;
-import model.interfaces.IPlatform;
+package model.platform;
 
 public class GraduatedPlatform implements IGraduatedPlatform {
     private IPlatform context;

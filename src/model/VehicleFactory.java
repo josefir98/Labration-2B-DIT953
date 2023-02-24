@@ -36,15 +36,12 @@ public class VehicleFactory {
         int r = rand.nextInt(3);
         IVehicle vehicle;
         if (r == 0) {
-            vehicle = new Volvo240(Color.BLACK);
+            vehicle = createVolvo240(x, y);
         } else if (r == 1) {
-            vehicle = new Saab95(Color.BLACK);
+            vehicle = createSaab95(x, y);
         } else {
-            vehicle = new Scania(Color.BLACK);
+            vehicle = createScania(x, y);
         }
-
-        vehicle.setX(x);
-        vehicle.setY(y);
         return vehicle;
     }
 }

@@ -1,11 +1,11 @@
 package model.gameobjects;
 
-import model.PlatformDown;
-import model.GraduatedPlatform;
+import model.platform.PlatformDown;
+import model.platform.GraduatedPlatform;
 import model.Motorized;
-import model.interfaces.IGraduatedPlatform;
+import model.platform.IGraduatedPlatform;
 import model.interfaces.IMotorized;
-import model.interfaces.IPlatform;
+import model.platform.IPlatform;
 import model.interfaces.IVehicle;
 
 import java.awt.*;

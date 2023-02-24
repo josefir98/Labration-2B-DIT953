@@ -1,10 +1,10 @@
 package model.gameobjects;
 
-import model.DualPlatform;
-import model.PlatformDown;
+import model.platform.DualPlatform;
+import model.platform.PlatformDown;
 import model.Motorized;
 import model.interfaces.IMotorized;
-import model.interfaces.IPlatform;
+import model.platform.IPlatform;
 import model.Storage;
 
 import java.awt.*;

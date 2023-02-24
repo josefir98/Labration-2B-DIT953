@@ -1,6 +1,4 @@
-package model;
-
-import model.interfaces.IPlatform;
+package model.platform;
 
 public class PlatformDown implements IPlatform {
 

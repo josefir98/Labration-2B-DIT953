@@ -1,7 +1,7 @@
 package model;
 
 import model.gameobjects.Saab95;
-import model.interfaces.IGraduatedPlatform;
+import model.platform.IGraduatedPlatform;
 import model.interfaces.IMotorized;
 import model.interfaces.IMovable;
 import model.interfaces.IVehicle;
